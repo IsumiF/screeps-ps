@@ -1,0 +1,36 @@
+name:                builder-shake
+version:             0.1.0.0
+github:              "githubuser/builder-shake"
+license:             BSD-3-Clause
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2019 Author name here"
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+dependencies:
+- base ^>= 4.12
+- shake ^>= 0.17.9
+- process
+- servant
+- servant-client
+- aeson
+- text
+- containers
+- http-client
+- text
+- bytestring
+- filepath
+- lens
+- http-client-tls 
+
+executables:
+  shake:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
