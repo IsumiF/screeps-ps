@@ -38,6 +38,11 @@ main = shakeArgs shakeOptions { shakeFiles = buildDir } $ do
     makeDeployPhony "deploy" "main.min.js"
     makeDeployPhony "deploy-dev" "main.js"
 
+    phony "repl" $ liftIO $ callCommand "pulp repl"
+
+    phony "build" $ need [buildDir </> "main.min.js"]
+    phony "build-dev" $ need [buildDir </> "main.js"]
+
     buildDir </> "main.min.js" %> \out -> do
       need [buildDir </> "main.js"]
       liftIO $ callCommand $
