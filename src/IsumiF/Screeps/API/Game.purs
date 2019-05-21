@@ -36,11 +36,13 @@ newtype CallCreep = CallCreep Creep
 class IsCreep a where
   moveToTarget :: a -> RoomPosition -> Effect Unit
 
+newtype CallRoomPosition = CallRoomPosition RoomPosition
+
 class HasRoomPosition a where
   getRoomPosition :: a -> RoomPosition
 
-instance roomPosition :: HasRoomPosition RoomPosition where
-  getRoomPosition = identity
+instance roomPosition :: HasRoomPosition CallRoomPosition where
+  getRoomPosition (CallRoomPosition x) = x
 
-instance roomObjectHasRoomPosition :: HasRoomPosition (RoomObject sub) where
-  getRoomPosition roomObject = roomObject.pos
+instance roomObjectHasRoomPosition :: HasRoomPosition CallStructureSpawn where
+  getRoomPosition (CallStructureSpawn x) = x.pos
